@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+
+class Result {
+
+    /*
+     * Complete the 'compareTriplets' function below.
+     *
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER_ARRAY b
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     */
+
+    public static List<Integer> compareTriplets(
+            List<Integer> a,
+            List<Integer> b) {
+
+        int alice = 0;
+        int bob = 0;
+
+        for (int i = 0; i < 3; i++) {
+
+            if (a.get(i) > b.get(i)) {
+                alice++;
+            } else if (a.get(i) < b.get(i)) {
+                bob++;
+            }
+        }
+
+        return Arrays.asList(alice, bob);
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bufferedReader =
+                new BufferedReader(new InputStreamReader(System.in));
+
+        List<Integer> a = new ArrayList<>(
+                Arrays.stream(bufferedReader.readLine().trim().split(" "))
+                        .map(Integer::parseInt)
+                        .collect(java.util.stream.Collectors.toList())
+        );
+
+        List<Integer> b = new ArrayList<>(
+                Arrays.stream(bufferedReader.readLine().trim().split(" "))
+                        .map(Integer::parseInt)
+                        .collect(java.util.stream.Collectors.toList())
+        );
+
+        List<Integer> result = Result.compareTriplets(a, b);
+
+        System.out.println(result.get(0) + " " + result.get(1));
+
+        bufferedReader.close();
+    }
+}
